@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {}
+    "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
+    "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj",
+        "projectUniqueName": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj",
+        "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\obj\\",
+        "outputPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -63,14 +63,14 @@
         }
       }
     },
-    "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {
+    "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\obj\\",
+        "outputPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -92,8 +92,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj"
+              "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
+                "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj"
               }
             }
           }

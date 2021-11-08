@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZGYFfbdPQwStwa8FuvJ0G7W+xENQqmjz/XnzCWIl7fxRYPQ/NRSHdFT4RIfPwxWp7beFaC8wBqOd++BWpd5I2w==",
+  "dgSpecHash": "Y5NIc2a6TtHqC4t6dewX+VA9a6qCzwq5PWNAlCZoDCteZUniEtCdrwrILUOppgkStspsCqmromLiR8gVz7uweQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
+  "projectFilePath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

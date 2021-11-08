@@ -25,8 +25,7 @@ namespace Infrastructure.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
+                    b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsAffiliate")
@@ -35,11 +34,10 @@ namespace Infrastructure.Data.Migrations
                     b.Property<bool>("IsEmployee")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("UpdatedOn")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -53,27 +51,16 @@ namespace Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DiscountType")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("DiscountValue")
+                    b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<string>("DiscountType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("PercentageDiscount")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("Discounts");
                 });
@@ -84,14 +71,26 @@ namespace Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("CompanyAddress")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("DiscountId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("PaymentDueDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ReferenceNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SellersName")
+                        .HasColumnType("TEXT");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("TEXT");
@@ -100,9 +99,39 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("DiscountId");
-
                     b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("Core.Entities.InvoiceProducts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreateOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("InvoiceProducts");
                 });
 
             modelBuilder.Entity("Core.Entities.Product", b =>
@@ -118,7 +147,6 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Price")
@@ -129,36 +157,109 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("InvoiceId");
 
                     b.ToTable("Products");
-                });
 
-            modelBuilder.Entity("Core.Entities.Discount", b =>
-                {
-                    b.HasOne("Core.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Core.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Product");
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsGrocery = false,
+                            Name = "T-Shirts",
+                            Price = 2450m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsGrocery = true,
+                            Name = "Bread",
+                            Price = 520m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsGrocery = true,
+                            Name = "Meat",
+                            Price = 1470m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsGrocery = false,
+                            Name = "Jeans",
+                            Price = 2680m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsGrocery = true,
+                            Name = "Pasta",
+                            Price = 1230m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsGrocery = true,
+                            Name = "Watermelon",
+                            Price = 700m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsGrocery = false,
+                            Name = "Singlet",
+                            Price = 1130m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsGrocery = true,
+                            Name = "Apple",
+                            Price = 300m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IsGrocery = false,
+                            Name = "Boxers",
+                            Price = 575m
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Invoice", b =>
                 {
                     b.HasOne("Core.Entities.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Core.Entities.Discount", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscountId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
+                });
 
-                    b.Navigation("Discount");
+            modelBuilder.Entity("Core.Entities.InvoiceProducts", b =>
+                {
+                    b.HasOne("Core.Entities.Customer", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Invoice", "invoice")
+                        .WithMany("InvoiceProducts")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customers");
+
+                    b.Navigation("invoice");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Core.Entities.Product", b =>
@@ -170,6 +271,8 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Invoice", b =>
                 {
+                    b.Navigation("InvoiceProducts");
+
                     b.Navigation("Product");
                 });
 #pragma warning restore 612, 618

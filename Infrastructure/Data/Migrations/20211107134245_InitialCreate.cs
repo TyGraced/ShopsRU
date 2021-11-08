@@ -13,12 +13,12 @@ namespace Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
-                    IsEmployee = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
                     IsAffiliate = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedOn = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    IsEmployee = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,21 +31,13 @@ namespace Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    DiscountType = table.Column<int>(type: "INTEGER", nullable: false),
-                    DiscountValue = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CustomerId = table.Column<int>(type: "INTEGER", nullable: true),
-                    ProductId = table.Column<int>(type: "INTEGER", nullable: true)
+                    DiscountType = table.Column<string>(type: "TEXT", nullable: true),
+                    PercentageDiscount = table.Column<double>(type: "REAL", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Discounts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Discounts_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,9 +47,13 @@ namespace Infrastructure.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     TotalAmount = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CustomerId = table.Column<int>(type: "INTEGER", nullable: true),
-                    DiscountId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    SellersName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyAddress = table.Column<string>(type: "TEXT", nullable: true),
+                    CustomerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IssueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    PaymentDueDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ReferenceNumber = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,13 +63,7 @@ namespace Infrastructure.Data.Migrations
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Discounts_DiscountId",
-                        column: x => x.DiscountId,
-                        principalTable: "Discounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,7 +72,7 @@ namespace Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
                     IsGrocery = table.Column<bool>(type: "INTEGER", nullable: false),
                     InvoiceId = table.Column<int>(type: "INTEGER", nullable: true)
@@ -98,14 +88,54 @@ namespace Infrastructure.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "InvoiceProducts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CustomerId = table.Column<int>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false),
+                    InvoiceId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreateOn = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InvoiceProducts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_InvoiceProducts_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InvoiceProducts_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_InvoiceProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Discounts_CustomerId",
-                table: "Discounts",
+                name: "IX_InvoiceProducts_CustomerId",
+                table: "InvoiceProducts",
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Discounts_ProductId",
-                table: "Discounts",
+                name: "IX_InvoiceProducts_InvoiceId",
+                table: "InvoiceProducts",
+                column: "InvoiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InvoiceProducts_ProductId",
+                table: "InvoiceProducts",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
@@ -114,40 +144,18 @@ namespace Infrastructure.Data.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Invoices_DiscountId",
-                table: "Invoices",
-                column: "DiscountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_InvoiceId",
                 table: "Products",
                 column: "InvoiceId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Discounts_Products_ProductId",
-                table: "Discounts",
-                column: "ProductId",
-                principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Discounts_Customers_CustomerId",
-                table: "Discounts");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Invoices_Customers_CustomerId",
-                table: "Invoices");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Discounts_Products_ProductId",
-                table: "Discounts");
+            migrationBuilder.DropTable(
+                name: "Discounts");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "InvoiceProducts");
 
             migrationBuilder.DropTable(
                 name: "Products");
@@ -156,7 +164,7 @@ namespace Infrastructure.Data.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Discounts");
+                name: "Customers");
         }
     }
 }

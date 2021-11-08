@@ -1,5 +1,5 @@
-using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Interfaces;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Linq;
 
 namespace API
 {
@@ -27,10 +28,16 @@ namespace API
             services.AddControllers();
             services.AddDbContext<AppDbContext>(x => 
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IDiscountService, DiscountService>();
+            services.AddScoped<IInvoiceService, InvoiceService>();
+            services.AddScoped<IProductService, ProductService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
             });
         }
 
