@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ltRLNSl0nvz3k6ytHgUbgFlfFyBQHFNFQA4GMkN7AlV7+j+4OX9StRf+bSRsagr/SK7KIsJ7M+Tzs6NkVgC5Iw==",
+  "dgSpecHash": "ynY5Qm7ciZfx4taJOhw1xa2mnjE5D9U29xQespj5Wf6OGNwU2DdnNtr7bjazgDsjrJFtKxqtR+qvOE8maiRwvA==",
   "success": true,
-  "projectFilePath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.0\\microsoft.data.sqlite.core.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",

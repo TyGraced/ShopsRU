@@ -61,109 +61,47 @@ namespace Infrastructure.Services
 
             if (isAffiliate && isEmployee && customerYears >= 2 && percentageDiscountPrice > 0)
             {
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 30 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return EmoloyeeDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (isAffiliate && isEmployee && percentageDiscountPrice > 0)
             {
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 30 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return EmoloyeeDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (isAffiliate && customerYears >= 2 && percentageDiscountPrice > 0)
             {
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 10 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return AffiliateDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (isEmployee && customerYears >= 2 && percentageDiscountPrice > 0)
             {
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 30 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return EmoloyeeDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (isAffiliate && percentageDiscountPrice > 0)
             {
-
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 10 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return AffiliateDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (isEmployee && percentageDiscountPrice > 0)
             {
-
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 30 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+                return EmoloyeeDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
             if (customerYears >= 2 && percentageDiscountPrice > 0)
             {
+                return TwoYearsDiscount(percentageDiscountPrice, nonPercentageDiscountPrice);
+            }
 
-                var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 5 / 100);
-                var totalPrice = nonPercentageDiscountPrice + discountedPrice;
-                int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
-                var totalAmount = totalPrice - discountPerHundereds;
-                return new ApiResponse<InvoiceTotalAmountResponseDto>
-                {
-                    Message = "Successful",
-                    Status = true,
-                    Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
-                };
+            if (percentageDiscountPrice > 0)
+            {
+                return DiscountPerHundred(percentageDiscountPrice, nonPercentageDiscountPrice);
             }
 
 
             else
             {
-
                 var totalPrice = nonPercentageDiscountPrice + percentageDiscountPrice;
                 int discountPerHundereds = ((int)(nonPercentageDiscountPrice / 100) * 5);
                 var totalAmount = totalPrice - discountPerHundereds;
@@ -175,6 +113,61 @@ namespace Infrastructure.Services
                 };
             }
 
+        }
+
+        private static ApiResponse<InvoiceTotalAmountResponseDto> DiscountPerHundred(decimal percentageDiscountPrice, decimal nonPercentageDiscountPrice)
+        {
+            var totalPrice = nonPercentageDiscountPrice + percentageDiscountPrice;
+            int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
+            var totalAmount = totalPrice - discountPerHundereds;
+            return new ApiResponse<InvoiceTotalAmountResponseDto>
+            {
+                Message = "Successful",
+                Status = true,
+                Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
+            };
+        }
+
+        private static ApiResponse<InvoiceTotalAmountResponseDto> TwoYearsDiscount(decimal percentageDiscountPrice, decimal nonPercentageDiscountPrice)
+        {
+            var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 5 / 100);
+            var totalPrice = nonPercentageDiscountPrice + discountedPrice;
+            int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
+            var totalAmount = totalPrice - discountPerHundereds;
+            return new ApiResponse<InvoiceTotalAmountResponseDto>
+            {
+                Message = "Successful",
+                Status = true,
+                Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
+            };
+        }
+
+        private static ApiResponse<InvoiceTotalAmountResponseDto> AffiliateDiscount(decimal percentageDiscountPrice, decimal nonPercentageDiscountPrice)
+        {
+            var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 10 / 100);
+            var totalPrice = nonPercentageDiscountPrice + discountedPrice;
+            int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
+            var totalAmount = totalPrice - discountPerHundereds;
+            return new ApiResponse<InvoiceTotalAmountResponseDto>
+            {
+                Message = "Successful",
+                Status = true,
+                Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
+            };
+        }
+
+        private static ApiResponse<InvoiceTotalAmountResponseDto> EmoloyeeDiscount(decimal percentageDiscountPrice, decimal nonPercentageDiscountPrice)
+        {
+            var discountedPrice = percentageDiscountPrice - (percentageDiscountPrice * 30 / 100);
+            var totalPrice = nonPercentageDiscountPrice + discountedPrice;
+            int discountPerHundereds = ((int)(percentageDiscountPrice / 100) * 5);
+            var totalAmount = totalPrice - discountPerHundereds;
+            return new ApiResponse<InvoiceTotalAmountResponseDto>
+            {
+                Message = "Successful",
+                Status = true,
+                Data = new InvoiceTotalAmountResponseDto { TotalAmount = totalAmount }
+            };
         }
     }
 }

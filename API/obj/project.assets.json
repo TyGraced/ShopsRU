@@ -1335,11 +1335,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
+      "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\API\\obj\\",
+      "outputPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -1361,11 +1361,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
-              "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj"
+            "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Core\\Core.csproj"
             },
-            "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "c:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj"
+            "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
