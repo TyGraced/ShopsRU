@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZGYFfbdPQwStwa8FuvJ0G7W+xENQqmjz/XnzCWIl7fxRYPQ/NRSHdFT4RIfPwxWp7beFaC8wBqOd++BWpd5I2w==",
+  "dgSpecHash": "FzD2scjv/Med0wyrT/Mf6U9DpmSyNIneSNc4JwlktQ+NenLNMoQGlqXU4e1/2XVEkUAcnBqnOrdW1ZB/hCzfoQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\HP\\source\\repos\\shopsRUs\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.0\\microsoft.entityframeworkcore.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.0\\microsoft.entityframeworkcore.analyzers.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.0\\microsoft.entityframeworkcore.design.5.0.0.nupkg.sha512",
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\5.0.0\\microsoft.entityframeworkcore.inmemory.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.0\\microsoft.entityframeworkcore.relational.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\5.0.0\\microsoft.entityframeworkcore.sqlite.5.0.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite.core\\5.0.0\\microsoft.entityframeworkcore.sqlite.core.5.0.0.nupkg.sha512",
